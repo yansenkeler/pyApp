@@ -4,16 +4,9 @@
 # + 25 = 55 = t10. If the word value is a triangle number then we shall call the word a triangle word. Using
 # words.txt (right click and 'Save Link/Target As...'), a 16K text file containing nearly two-thousand common English
 #  words, how many are triangle words?
-import math, time
-
-
-def is_triangle_number(num):
-    delta = math.sqrt(1 + 8 * num)
-    x1 = (-1 + delta) / 2
-    if str(x1).rstrip('0').endswith('.'):
-        print(int(x1))
-        return True
-    return False
+import math
+import time
+import tools
 
 
 def calculate_word_value(word):
@@ -30,7 +23,7 @@ data = fo.read()
 data = data[1:-1]
 data_list = data.split('","')
 for x in data_list:
-    if is_triangle_number(calculate_word_value(x)):
+    if tools.is_triangle_number(calculate_word_value(x)):
         print(x)
         count += 1
 
