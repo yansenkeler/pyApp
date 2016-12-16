@@ -13,9 +13,22 @@
 # If this process is continued, what is the side length of the square spiral for which the ratio of primes along both
 # diagonals first falls below 10%?
 import time
+import tools
+import math
 
 
 startTime = time.time()
+noOfPrimes = 3
+sl = 2
+c = 9
 
-print('result is ', '')
+while noOfPrimes / (2 * sl+1) > 0.1:
+    sl += 2
+    for i in range(0, 3):
+        c += sl
+        if tools.is_prime(c):
+            noOfPrimes += 1
+    c += sl
+
+print('result is ', int(math.sqrt(c)))
 print('total time: ', time.time() - startTime, 'ms')

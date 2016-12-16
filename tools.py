@@ -144,3 +144,5 @@ def simply_fraction(fraction):
         return str(int(v1 / common_divisor)) + '/' + str(int(v2 / common_divisor))
     else:
         return '0/0'
+
+
