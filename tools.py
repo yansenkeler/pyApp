@@ -1,4 +1,5 @@
 import math
+import itertools
 
 
 def is_prime(num):
@@ -39,7 +40,7 @@ def nth_prime(n):
 
 def nth_sum_prime(n):
     s = 0
-    for i in range(1, n+1):
+    for i in range(1, n + 1):
         s += nth_prime(i)
     return s
 
@@ -84,3 +85,17 @@ def get_min_approximate_number(number):
         if number % i == 0:
             return i
     return 1
+
+
+def factorial(number):
+    result = 1
+    if number == 0:
+        return 1
+    for i in range(1, number + 1):
+        result *= i
+    return result
+
+
+# a > b
+def combination_count(a, b):
+    return factorial(int(a)) / (factorial(int(b)) * factorial(int(a - b)))
