@@ -1,7 +1,9 @@
 import math
 import itertools
+import re
 
 
+# 是否为质数
 def is_prime(num):
     result = True
     if num <= 0 or num == 1 or num == 4:
@@ -28,6 +30,7 @@ def is_pan_digital(num, start, end):
     return True
 
 
+# 第n个质数
 def nth_prime(n):
     nth = 0
     number = 1
@@ -38,6 +41,7 @@ def nth_prime(n):
     return number - 1
 
 
+# 前n个质数之和
 def nth_sum_prime(n):
     s = 0
     for i in range(1, n + 1):
@@ -63,6 +67,7 @@ def is_hexagonal_number(number):
     return is_integer(x1)
 
 
+# 是否是整数
 def is_integer(n):
     if str(n).strip('0').endswith('.'):
         return True
@@ -99,3 +104,43 @@ def factorial(number):
 # a > b
 def combination_count(a, b):
     return factorial(int(a)) / (factorial(int(b)) * factorial(int(a - b)))
+
+
+# 是否为回文数
+def is_palindrome(number):
+    number_string = str(number)
+    temp_string = number_string
+    number_list = list(number_string)
+    number_list.reverse()
+    if temp_string == ''.join(number_list):
+        return True
+    return False
+
+
+# 最小公倍数
+def least_common_multiple(n1, n2):
+    flag = True
+    s_n = max(n1, n2)
+    while flag:
+        if s_n % n1 == 0 and s_n % n2 == 0:
+            return s_n
+        s_n += 1
+
+
+# 最大公约数
+def maximum_common_divisor(n1, n2):
+    smaller = min(n1, n2)
+    for i in range(smaller, 0, -1):
+        if n1 % i == 0 and n2 % i == 0:
+            return i
+
+
+# 简化分数
+def simply_fraction(fraction):
+    if re.match('^\d+/\d+$', fraction):
+        v1 = int(fraction.split('/')[0])
+        v2 = int(fraction.split('/')[1])
+        common_divisor = maximum_common_divisor(v1, v2)
+        return str(int(v1 / common_divisor)) + '/' + str(int(v2 / common_divisor))
+    else:
+        return '0/0'
