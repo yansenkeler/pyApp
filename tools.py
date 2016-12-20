@@ -4,18 +4,21 @@ import re
 
 
 # 是否为质数
-def is_prime(num):
-    result = True
-    if num <= 0 or num == 1 or num == 4:
-        result = False
-    elif num == 2 or num == 3:
-        pass
-    else:
-        for i in range(2, math.ceil(math.sqrt(num)) + 1):
-            if num % i == 0:
-                result = False
-                break
-    return result
+def is_prime(n):
+    if n == 1:
+        return False
+    if n in [3, 5, 7]:
+        return True
+    if not n % 3:
+        return False
+    if not n % 5:
+        return False
+    if not n % 7:
+        return False
+    for i in range(2, int(math.floor(n ** 0.5) + 1)):
+        if not n % i:
+            return False
+    return True
 
 
 # is start to end pandigital

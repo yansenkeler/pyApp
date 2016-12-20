@@ -12,3 +12,36 @@
 # characters. Using cipher.txt (right click and 'Save Link/Target As...'), a file containing the encrypted ASCII
 # codes, and the knowledge that the plain text must contain common English words, decrypt the message and find the
 # sum of the ASCII values in the original text.
+import time
+
+
+def decryption_article(w, d):
+    s = 0
+    r = ''
+    for i in d.split(','):
+        if s == 3:
+            s = 0
+        d_c = chr(ord(w[s]) ^ int(i))
+        if d_c == '$' or d_c == '=' or d_c == '@' or d_c == '*' or d_c == '/' or d_c == '<' or d_c == '-' or d_c == '~':
+            return ''
+        r += d_c
+        s += 1
+    return r
+
+
+start = time.time()
+fo = open('p059_cipher.txt')
+data = fo.read()
+for a in range(97, 123):
+    for b in range(97, 123):
+        for c in range(97, 123):
+            word = chr(a) + chr(b) + chr(c)
+            result = decryption_article(word, data)
+            if len(result) > 0:
+                print(word)
+                print(result)
+                sss = 0
+                for d in range(0, len(result)):
+                    sss += ord(result[d])
+                print(sss)
+print('spend time: ', time.time() - start)
